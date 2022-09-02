@@ -1,4 +1,5 @@
 import React from "react";
+import './spaceComponent.css';
 
 interface SpaceComponentProps {
   spaceId: string;
@@ -10,7 +11,7 @@ interface SpaceComponentProps {
 
 export class SpaceComponent extends React.Component<SpaceComponentProps> {
     private renderImage(){
-      const logo =  require("../../assets/logo.png")
+      const logo =  require("../../assets/proj2.jpg")
         if(this.props.photoUrl){
             return <img src={this.props.photoUrl} alt="" />
         }else{
@@ -19,11 +20,11 @@ export class SpaceComponent extends React.Component<SpaceComponentProps> {
     }
   render() {
     return (
-      <div>
+      <div className="spaceComponent">
         {this.renderImage()}
-        <label htmlFor="">{this.props.name}</label> <br />
-        <label htmlFor="">{this.props.spaceId}</label> <br />
-        <label htmlFor="">{this.props.location}</label> <br />
+        <label className="name" htmlFor="">{this.props.name}</label> <br />
+        <label className="spaceId" htmlFor="">{this.props.spaceId}</label> <br />
+        <label className="location" htmlFor="">{this.props.location}</label> <br />
         <button onClick={() => this.props.reserveSpace(this.props.spaceId)}>
           Reserve
         </button>

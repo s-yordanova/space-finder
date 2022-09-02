@@ -8,6 +8,8 @@ import { Home } from "./Home";
 import { Profile } from "./Profile";
 import { CustomBrowserRouter } from "./CustomBrowserRouter";
 import history from "../utils/history";
+import { Spaces } from "./spaces/Spaces";
+import { DataService } from "../services/DataService";
 
 interface AppState {
   user: User | undefined;
@@ -15,6 +17,7 @@ interface AppState {
 
 export class App extends React.Component<{}, AppState> {
   private authService: AuthService = new AuthService();
+  private dataService: DataService = new DataService();
 
   constructor(props: any) {
     super(props);
@@ -58,6 +61,7 @@ export class App extends React.Component<{}, AppState> {
                   />
                 }
               />
+              <Route path="/spaces" element={<Spaces dataService={this.dataService} />} />
             </Routes>
           </div>
         </CustomBrowserRouter>

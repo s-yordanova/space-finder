@@ -1,10 +1,13 @@
 import React from "react";
 import { Space } from "../../model/Model";
 import { DataService } from "../../services/DataService";
+import { ConfirmModalComponent } from "./ConfirmModalComponent";
 import { SpaceComponent } from "./SpaceComponent";
 
 interface SpacesState {
   spaces: Space[];
+  displayModal: boolean;
+  modalContent: string;
 }
 
 interface SpacesProps {
@@ -16,7 +19,11 @@ export class Spaces extends React.Component<SpacesProps, SpacesState> {
     super(props);
     this.state = {
       spaces: [],
+      displayModal: false,
+      modalContent: "",
     };
+    this.reserveSpace = this.reserveSpace.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   async componentDidMount() {
@@ -27,7 +34,22 @@ export class Spaces extends React.Component<SpacesProps, SpacesState> {
     this.reserveSpace = this.reserveSpace.bind(this);
   }
 
-  private async reserveSpace(spaceId: string){}
+  private async reserveSpace(spaceId: string) {
+    const reservationResult = await this.props.dataService.reserveSpace(
+      spaceId
+    );
+    if (reservationResult) {
+      this.setState({
+        displayModal: true,
+        modalContent: `You reserved the space with id ${spaceId} and got the reservation number ${reservationResult}!`,
+      });
+    } else {
+      this.setState({
+        displayModal: true,
+        modalContent: `You can't reserve the space with id ${spaceId}`,
+      });
+    }
+  }
 
   private renderSpaces() {
     const rows: any[] = [];
@@ -44,12 +66,24 @@ export class Spaces extends React.Component<SpacesProps, SpacesState> {
     return rows;
   }
 
+  private closeModal() {
+    this.setState({
+      displayModal: false,
+      modalContent: "",
+    });
+  }
+
   render() {
-    return(
-    <div>
+    return (
+      <div>
         <h2>Spaces available</h2>
         {this.renderSpaces()}
-    </div>
-    )
+        <ConfirmModalComponent
+          close={this.closeModal}
+          content={this.state.modalContent}
+          display={this.state.displayModal}
+        />
+      </div>
+    );
   }
 }
