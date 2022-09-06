@@ -9,7 +9,7 @@ export class Navbar extends React.Component<{
   render() {
 
     let loginLogout: any
-    if(this.props.user){
+    if (this.props.user){
         loginLogout = <Link to='/logout' style={{float:'right'}}>{this.props.user.userName}</Link>
     }
     else{
@@ -23,6 +23,6 @@ export class Navbar extends React.Component<{
         <Link to='/spaces'>Spaces</Link>
         {loginLogout}
       </div>
-    )
+    );
   }
 }

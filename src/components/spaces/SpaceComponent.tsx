@@ -12,9 +12,9 @@ interface SpaceComponentProps {
 export class SpaceComponent extends React.Component<SpaceComponentProps> {
     private renderImage(){
       const logo =  require("../../assets/proj2.jpg")
-        if(this.props.photoUrl){
+        if (this.props.photoUrl){
             return <img src={this.props.photoUrl} alt="" />
-        }else{
+        } else {
             return <img src={logo} alt="" />
         }
     }

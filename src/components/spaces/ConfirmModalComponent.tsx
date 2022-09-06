@@ -9,10 +9,9 @@ interface ConfirmModalComponentProps{
 
 export class ConfirmModalComponent extends React.Component<ConfirmModalComponentProps> {
   render() {
-    if(!this.props.display){
+    if (!this.props.display){
       return null;
-    }
-    else{
+    } else {
       return <div className='modal'>
         <div className="modal-content">
           <h2>You tried to reserve and ...</h2>

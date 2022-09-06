@@ -55,9 +55,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
       this.props.setUser(result); //passing the user to App
       history.push('/profile');
     } else {
-      this.setState({
-        loginSuccessfull: false,
-      });
+      this.setState({ loginSuccessfull: false });
     }
   }
 

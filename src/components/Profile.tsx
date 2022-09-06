@@ -13,7 +13,6 @@ interface ProfileProps {
 }
 
 export class Profile extends React.Component<ProfileProps, ProfileState> {
-  
   state: ProfileState = {
     userAttributes: []
   }
@@ -41,6 +40,7 @@ export class Profile extends React.Component<ProfileProps, ProfileState> {
       </tbody>
     </table>
   }
+
   render() {
     let profileSpace;
     if (this.props.user) {
